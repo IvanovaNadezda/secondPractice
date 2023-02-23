@@ -11,8 +11,8 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="412dp"
-        android:layout_height="727dp"
+        android:layout_width="400dp"
+        android:layout_height="700dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

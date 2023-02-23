@@ -1,11 +1,18 @@
 package com.example.secondpractice;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,36 +20,43 @@ import com.example.secondpractice.databinding.ActivityMainBinding;
 
 import java.util.zip.Inflater;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String TAG = this.getClass().getSimpleName();
-    TextView tv;
+    private Button btn2, btn4;
+    private EditText ed;
+    private TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btn2 = findViewById(R.id.button2);
+        btn2.setOnClickListener(this);
+        ed = findViewById(R.id.editText);
+        tv = findViewById(R.id.textView4);
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        // Инициализация TextView строковым ресурсом с помощью ViewBinding
-        tv = binding.textView3;
-        String textBookshelf = getString(R.string.infAboutOwl);
-        tv.setText(textBookshelf);
 
-        // Инициализация ImageView картинкой с помощью ViewBinding
-        ImageView imageViewBook1 = binding.imageView2;
-        Drawable drawableImageBook1 = getDrawable(R.drawable.owl);
-        imageViewBook1.setImageDrawable(drawableImageBook1);
-
-        // Программное задание обработчика событий
-        binding.button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Нажали информация!");
-            }
-        });
     }
-    // Декларативное задание метода обработчика событий
-    public void buttonSaveClickHandler(View view) {
-        Log.d(TAG, "Нажали информация");
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == InfoActivity.INFOACTIVITY_CODE) {
+                        tv.setText(result.getData().getStringExtra("ppp"));
+                    }
+                }
+            }
+    );
+
+    @Override
+    public void onClick(View v) {
+        //Явное намерение
+        //Переход на другую активность
+        Intent intent = new Intent(getApplicationContext(),InfoActivity.class);
+        intent.putExtra("ccc",ed.getText().toString());
+        //startActivity(intent);
+        someActivityResultLauncher.launch(intent);
     }
 }
