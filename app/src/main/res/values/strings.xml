@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">secondPractice</string>
+    <string name="app_name">My Application</string>
+    <string name="go_to_google">Go to Google</string>
+    <string name="send_to_infoactivity">Send to infoactivity</string>
+    <string name="enter_value">Enter value</string>
+    <string name="send_text">Send text</string>
+    <string name="image_BN">TODO</string>
+    <string name="back">Назад</string>
+    <string name="infAboutOwl">Информация о совах</string>
+    <string name="BN">Бородатая неясыть</string>
+    <string name="hint_optionOfName">Введите возможное имя совы</string>
+    <string name="text1">Здесь будет имя совы</string>
+    <string name="inf">Информация</string>
 </resources>
