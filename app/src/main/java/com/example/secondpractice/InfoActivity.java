@@ -22,7 +22,7 @@ public class InfoActivity extends AppCompatActivity {
         btn3 = findViewById(R.id.button4);
         tv = findViewById(R.id.textView2);
 
-        Bundle bundle = getIntent().getExtras(); // может быть нулл
+        Bundle bundle = getIntent().getExtras(); // может быть null
         if(bundle != null){
             tv.setText(bundle.getString("ccc"));
         }
