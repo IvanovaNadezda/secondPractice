@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.secondpractice.databinding.ActivityMainBinding;
 
@@ -22,6 +23,7 @@ import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private final String TAG = this.getClass().getSimpleName();
     private Button btn2, btn4;
     private EditText ed;
     private TextView tv;
@@ -29,12 +31,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        /*setContentView(R.layout.activity_main);
         btn2 = findViewById(R.id.button2);
         btn2.setOnClickListener(this);
         ed = findViewById(R.id.editText);
-        tv = findViewById(R.id.textView4);
+        tv = findViewById(R.id.textView4);*/
 
+        /*TextView usernameTextView = (TextView) findViewById(R.id.textView3); // Информация о совах
+        usernameTextView.setText(R.string.infAboutOwl);
+        ImageView myImage = (ImageView) findViewById(R.id.imageView3); // Картинка совы на стартовом экране
+        myImage.setImageResource(R.drawable.owl);*/
+        /*// Инициализация TextView строковым ресурсом с помощью ViewBinding
+        TextView textViewBookshelf = binding.textView;
+        // main_activity__textView_bookshelf
+        String textBookshelf = getString(R.string.infAboutOwl);
+        textViewBookshelf.setText(textBookshelf);
+
+        // Инициализация ImageView картинкой с помощью ViewBinding
+        ImageView imageViewBook1 = binding.imageView3;
+        Drawable drawableImageBook1 = getDrawable(R.drawable.owl);
+        imageViewBook1.setImageDrawable(drawableImageBook1);*/
+
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("kkk", "Программный метод");
+            }
+        };
+
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Ну, нажали", Toast.LENGTH_SHORT);
+                toast.show();
+
+                Log.i(TAG, "нажали программно");
+                // передача объекта с ключом "name" и значением "именя"
+            }
+        });
 
     }
 
@@ -58,5 +95,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("ccc",ed.getText().toString());
         //startActivity(intent);
         someActivityResultLauncher.launch(intent);
+    }
+
+    public void buttonSaveClickHandler(View view) {
+        Log.i("kkk", "Декларативный метод");
     }
 }
