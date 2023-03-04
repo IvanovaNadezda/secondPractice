@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        /*setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         btn2 = findViewById(R.id.button2);
         btn2.setOnClickListener(this);
         ed = findViewById(R.id.editText);
-        tv = findViewById(R.id.textView4);*/
+        tv = findViewById(R.id.textView4);
 
         /*TextView usernameTextView = (TextView) findViewById(R.id.textView3); // Информация о совах
         usernameTextView.setText(R.string.infAboutOwl);
